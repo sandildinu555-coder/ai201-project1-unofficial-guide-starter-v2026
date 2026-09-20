@@ -1,26 +1,10 @@
-# The Unofficial Guide
-
-<!-- Replace this line with your name and which corpus you picked. -->
-
-> **This file is your submission.** Fill it in as you go — most sections get
-> written during the milestone that produces them, not at the end.
->
-> How the starter works, and every command you'll need, is in `RUNNING.md`.
-> Leave that file alone.
->
-> **Paste everything as text.** No screenshots, no video. A typed table gets
-> full credit; a picture of the same table gets none.
->
-> Delete these instruction blocks as you replace them. The `<!-- -->` comments
-> are notes to you and don't show up when the page renders — you can leave them
-> or remove them.
-
----
+# Sandil Dinuwara - campus_life
 
 # Unit 1
 
 ## What This Does
 
+This is a Retrieval-Augmented Generation (RAG) system designed to answer student queries. I picked the `campus_life` corpus, which contains 88 documents including administrative guides and student advice threads. The system provides accurate, strictly grounded answers regarding housing lotteries, class registration, dining hall food, and other university procedures.
 <!-- Three or four sentences. Which corpus you picked, and the kinds of
      questions your system answers. Write it for someone who has never seen
      this repo.
@@ -29,96 +13,60 @@
 
 ## Chunking Strategy
 
-**Chunk size:**
-**Overlap:**
+**Chunk size:** Dynamic (Paragraph-based)
+**Overlap:** 0
 
-<!-- What about YOUR documents made you pick these numbers? Short posts and
-     long sectioned guides don't want the same chunking, and "800 seemed
-     reasonable" earns nothing. Point at something you noticed when you read
-     the documents in Milestone 1.
-
-     If you changed your mind partway through, say so and say why. That's worth
-     more than pretending you got it right first time.
-
-     Milestone 3. -->
+Instead of cutting the documents at an arbitrary character limit (which cuts sentences in half), I updated `chunker.py` to split documents by paragraph boundaries (`\n\n`). Paragraphs naturally group complete thoughts together, providing the AI with the intact context it needs to generate accurate answers.
 
 ## Sample Chunks
 
-<!-- Five chunks, pasted as text. Label each one and name the file it came from
-     AND the function that produced it — the grader checks your code against
-     what you claim here.
+======================================================================
+Chunk 1  |  source: admin_add_drop_deadline.txt#0  |  produced by: chunker.py::split_documents
+======================================================================
+On the add/drop deadline
 
-     `python app.py chunks -n 5` prints all three for you. Copy them straight
-     across.
+======================================================================
+Chunk 2  |  source: course_cs_210_workload.txt#2  |  produced by: chunker.py::split_documents
+======================================================================
+It's front-loaded — the first month is heavier than the rest, partly because you're learning the format.
 
-     Milestone 3. -->
+======================================================================
+Chunk 3  |  source: course_phys_130.txt#3  |  produced by: chunker.py::split_documents
+======================================================================
+The one piece of advice: the lab practical is worth 20% and almost nobody prepares for it.
 
-**Chunk 1** — source: `` — produced by: ``
+======================================================================
+Chunk 4  |  source: dining_verrill_street_grill.txt#1  |  produced by: chunker.py::split_documents
+======================================================================
+I'm a junior and I've done this twice now. Wait times: up to 30 minutes on Friday evenings, otherwise under 10. The thing worth going for is the burger, which is the only late-night hot food on campus. The thing to know is that one register, so the queue is asingle line no matter how busy.
 
-```
-```
-
-**Chunk 2** — source: `` — produced by: ``
-
-```
-```
-
-**Chunk 3** — source: `` — produced by: ``
-
-```
-```
-
-**Chunk 4** — source: `` — produced by: ``
-
-```
-```
-
-**Chunk 5** — source: `` — produced by: ``
-
-```
-```
+======================================================================
+Chunk 5  |  source: housing_morrow_house.txt#2  |  produced by: chunker.py::split_documents
+======================================================================
+The good: cheapest housing tier by about $900 a year, and the singles are real singles.
 
 ## Sample Answer
 
-<!-- One complete question and answer, pasted as text, with the source line
-     visible. Milestone 4. -->
+**Question:** is the housing lottery random?
 
-**Question:**
+**Answer:** The housing lottery is not entirely random in the way most people assume. While rising sophomores get a number drawn at random, juniors and seniors are ordered first by accumulated credit hours, with random tie-breaks used only for ties (*admin_housing_lottery.txt*).
+(best distance 0.180, cutoff 0.6)
 
-**Answer:**
-
-```
-```
-
-**My relevance cutoff:**
-
-<!-- The number you set in config.py, and how you got there.
-
-     You ran five questions your corpus covers and the five in OUT_OF_SCOPE
-     that it clearly doesn't, and wrote down the best distance for each. What
-     did those two groups look like? Where was the gap? Put the actual numbers
-     here — the table below wants all ten rows.
-
-     Milestone 4. -->
+**My relevance cutoff:** 0.6
 
 | Question | In corpus? | Best distance |
 |---|---|---|
-|  |  |  |
+| is the housing lottery random? | Yes | 0.180 |
+| How is class registration priority determined based? | Yes | 0.576 |
+| What is the capital of Mongolia? | No | 0.799 |
+| How do I change the oil in a diesel engine? | No | 0.850 |
 
 ## How I Used AI
 
-<!-- Two specific moments. For each: what you asked for, what came back, and
-     what you changed about it.
 
-     "I asked Claude to write the chunking function from my notes. It ignored
-     the overlap, so I added that myself" is the level of detail we're after.
-     "I used AI to help me code" is not.
+**1.** I used AI as a sounding board to brainstorm and refine my 5 acceptance criteria in `criteria.md`, specifically ensuring that my rules were observable and measurable rather than subjective opinions.
 
-     Milestone 5. -->
-
-**1.**
-
-**2.**
+**2.** I collaborated with an AI assistant to write the Python logic for my paragraph-based chunking strategy (`\n\n` split) in `chunker.py`, ensuring it properly handled whitespace and empty strings.
 
 <!-- ── Stretch features ─────────────────────────────────────────────────────
      Doing one? Say so here BEFORE you start. A feature this README never

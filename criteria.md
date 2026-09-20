@@ -57,7 +57,10 @@ in at least 4 of 5 tries.
 
 ## 4. Something about your chunks
 
+At least 4 out of 5 sampled chunks align perfectly with natural paragraph boundaries, containing full paragraphs without cutting any sentence or paragraph in half.
+
 <!-- YOU WRITE THIS ONE.
+
 
      How would you know if your chunks were the right size? Name something
      countable or observable.
@@ -72,13 +75,14 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+Paragraphs naturally group complete thoughts. Breaking a paragraph in half destroys the context the AI needs to answer correctly. Taking the entire paragraph ensures the full idea remains intact, and a few extra details won't negatively impact the model compared to losing the core context.
 
 
 ---
 
 ## 5. Your choice
 
+For all test questions, the generated answer must contain at least 80% of a predefined set of expected keywords (rather than just a single word) to be marked as successfully answering the question.
 <!-- YOU WRITE THIS ONE TOO.
 
      Pick something you actually care about getting right. It could be about
@@ -90,7 +94,7 @@ in at least 4 of 5 tries.
 
 
 **Why this target:**
-
+Checking for a single keyword easily leads to false positives. For example, if the AI incorrectly generates "juniors get the lowest priority," it would still pass a simple check for the word "juniors." Requiring an 80% match of multiple expected keywords ensures the actual meaning and context of the answer are correct, preventing completely wrong answers from being marked as correct.
 
 
 ---
