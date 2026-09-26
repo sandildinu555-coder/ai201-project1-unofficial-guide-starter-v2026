@@ -83,111 +83,270 @@ The good: cheapest housing tier by about $900 a year, and the singles are real s
 
 ## Run Log — Before
 
-<!-- Your five criteria, three runs each. `python run_eval.py --label before`
-     runs the questions, puts the OUT_OF_SCOPE ones through the gate, and
-     writes it all into results/ for you. Targets come from criteria.md; the
-     verdict column is your call.
-
-     Criterion 3 is measured in one deterministic pass rather than three, so
-     the same number goes in all three run columns. That's correct, not lazy.
-
-     Milestone 1. -->
-
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunks contain the answer | 4 of 5 | 2/5 | 2/5 | 2/5 | MISSED |
+| 2. Every answer names a source | 5 of 5 | 3/5 | 2/5 | 2/5 | MISSED |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunks align perfectly with natural paragraph boundaries | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Answer contains expected keywords | 5 of 5 | 2/5 | 1/5 | 1/5 | MISSED |
 
-<!-- Underneath, paste the REAL output for each criterion from one of your
-     runs — the actual text your system produced, not a description of it.
-     Name the file and function that produced it. -->
+*Output produced by `run_eval.py::main`, saved in `results/run_2026-09-23_2041.md`:*
+
+### is the housing lottery random? — run 1
+
+- Best distance: 0.1801 (passed the gate)
+- Sources retrieved: admin_housing_lottery.txt, admin_parking_permits.txt, advising_registration.txt, housing_morrow_house.txt
+
+```
+The housing lottery is not entirely random; while rising sophomores get a number drawn at random, juniors and seniors are ordered by accumulated credit hours first, with random selection used only as a tie-breaker. 
+
+Source: admin_housing_lottery.txt
+```
+
+### is the housing lottery random? — run 2
+
+- Best distance: 0.1801 (passed the gate)
+- Sources retrieved: admin_housing_lottery.txt, admin_parking_permits.txt, advising_registration.txt, housing_morrow_house.txt
+
+```
+The housing lottery is not entirely random; rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first with random tie-breaking. 
+
+Source: admin_housing_lottery.txt
+```
+
+### is the housing lottery random? — run 3
+
+- Best distance: 0.1801 (passed the gate)
+- Sources retrieved: admin_housing_lottery.txt, admin_parking_permits.txt, advising_registration.txt, housing_morrow_house.txt
+
+```
+The housing lottery is not entirely random; rising sophomores get a number drawn at random, but juniors and seniors are ordered by accumulated credit hours first with random tie-breaking. 
+
+Source: `admin_housing_lottery.txt`
+```
+
+### How is class registration priority determined based? — run 1
+
+- Best distance: 0.5757 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_grade_appeals.txt, advising_registration.txt, course_stat_150.txt, dining_verrill_street_grill_followup.txt
+
+```
+Registration priority is determined by credit hours, with the times staggered similarly to the housing lottery. 
+
+Source: advising_registration.txt
+```
+
+### How is class registration priority determined based? — run 2
+
+- Best distance: 0.5757 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_grade_appeals.txt, advising_registration.txt, course_stat_150.txt, dining_verrill_street_grill_followup.txt
+
+```
+Registration priority is staggered by credit hours, which is the same as the housing lottery (advising_registration.txt).
+```
+
+### How is class registration priority determined based? — run 3
+
+- Best distance: 0.5757 (passed the gate)
+- Sources retrieved: admin_add_drop_deadline.txt, admin_grade_appeals.txt, advising_registration.txt, course_stat_150.txt, dining_verrill_street_grill_followup.txt
+
+```
+Registration priority is staggered by credit hours, just like the housing lottery (advising_registration.txt).
+```
+
+### What do students say about the quality of food in the dining hall? — run 1
+
+- Best distance: 0.4669 (passed the gate)
+- Sources retrieved: admin_dining_dollars.txt, dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, housing_fenwick_court.txt, housing_tamsin_court.txt
+
+```
+I do not have enough information to answer your question, as the provided documents do not mention the quality of food in the dining hall.
+```
+
+### What do students say about the quality of food in the dining hall? — run 2
+
+- Best distance: 0.4669 (passed the gate)
+- Sources retrieved: admin_dining_dollars.txt, dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, housing_fenwick_court.txt, housing_tamsin_court.txt
+
+```
+I do not have enough information to answer this question.
+```
+
+### What do students say about the quality of food in the dining hall? — run 3
+
+- Best distance: 0.4669 (passed the gate)
+- Sources retrieved: admin_dining_dollars.txt, dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, housing_fenwick_court.txt, housing_tamsin_court.txt
+
+```
+I do not have enough information to answer this question.
+```
+
+### How do students find books for research? — run 1
+
+- Best distance: 0.4768 (passed the gate)
+- Sources retrieved: admin_library_holds.txt, admin_study_abroad.txt, money_textbooks.txt, study_library_hours.txt
+
+```
+I do not have enough information to answer how students find books for research. 
+
+Source: money_textbooks.txt, admin_library_holds.txt, study_library_hours.txt, admin_study_abroad.txt
+```
+
+### How do students find books for research? — run 2
+
+- Best distance: 0.4768 (passed the gate)
+- Sources retrieved: admin_library_holds.txt, admin_study_abroad.txt, money_textbooks.txt, study_library_hours.txt
+
+```
+I don't have enough information to answer how students find books for research.
+```
+
+### How do students find books for research? — run 3
+
+- Best distance: 0.4768 (passed the gate)
+- Sources retrieved: admin_library_holds.txt, admin_study_abroad.txt, money_textbooks.txt, study_library_hours.txt
+
+```
+I don't have enough information to answer how students find books for research.
+```
+
+### What scholarships and awards are available for students? — run 1
+
+- Best distance: 0.4451 (passed the gate)
+- Sources retrieved: admin_campus_jobs_and_financial_aid.txt, admin_grade_appeals.txt, admin_graduation_requirements.txt, admin_study_abroad.txt, money_textbooks.txt
+
+```
+I do not have enough information to answer what scholarships and awards are available for students, as the provided documents do not mention them.
+```
+
+### What scholarships and awards are available for students? — run 2
+
+- Best distance: 0.4451 (passed the gate)
+- Sources retrieved: admin_campus_jobs_and_financial_aid.txt, admin_grade_appeals.txt, admin_graduation_requirements.txt, admin_study_abroad.txt, money_textbooks.txt
+
+```
+I do not have enough information to answer what scholarships and awards are available for students, as the provided documents do not mention them.
+```
+
+### What scholarships and awards are available for students? — run 3  
+
+- Best distance: 0.4451 (passed the gate)
+- Sources retrieved: admin_campus_jobs_and_financial_aid.txt, admin_grade_appeals.txt, admin_graduation_requirements.txt, admin_study_abroad.txt, money_textbooks.txt
+
+```
+I do not have enough information to answer what scholarships and awards are available for students.
+```
 
 ## Verdicts
 
-<!-- MET or MISSED for each of the five, against the target you wrote last
-     unit — not a new one. Plus a sentence on how you decided. That sentence
-     matters most where it was close.
-
-     If your target said 4 of 5 and your runs came out 4, 3, 4, that's a MISS.
-     The target has to hold, not show up occasionally.
-
-     Milestone 2. -->
-
 | # | Criterion | Verdict | How I decided |
 |---|---|---|---|
-| 1 |  |  |  |
-| 2 |  |  |  |
-| 3 |  |  |  |
-| 4 |  |  |  |
-| 5 |  |  |  |
+| 1 | Retrieved chunks contain the answer | MISSED | The target was 4 of 5, but the system only successfully retrieved the answer for 2 out of 5 questions (Q1 and Q2) on all runs. |
+| 2 | Every answer names a source | MISSED | The target was 5 of 5, but the system only included a source in 3/5 on the first run, and 2/5 on the second and third runs. |
+| 3 | Gate stops out-of-corpus questions | MET | The target was 4 of 5, and the gate successfully refused 5 out of 5 out-of-scope questions on all runs. |
+| 4 | Chunks align perfectly with natural boundaries | MET | The target was 4 of 5. Because I implemented paragraph-based chunking (\n\n) in Unit 1, 5 out of 5 sampled chunks remained fully intact. |
+| 5 | Answer contains expected keywords | MISSED (Revised) | The initial test scored 2/5, 1/5, 1/5. However, Question 2 failed due to a flawed measurement (looking for "academic" instead of "credit hours"). I revised this in `questions.py` and `criteria.md`. |
 
 ## Diagnoses
 
-<!-- For each miss: which stage caused it, and how. The stage alone isn't
-     enough — you need the mechanism.
+* **Criterion 1 (Retrieved chunks contain the answer):** 
+  * **Stage:** Retrieval
+  * **Mechanism:** For the questions about dining hall food, finding books, and scholarships, the system retrieved chunks that passed the relevance gate, but those chunks did not actually contain the answers. Pure semantic search struggled to pull the exact paragraphs containing those details, pulling marginally related chunks instead.
 
-     Not a diagnosis: "Question 3 didn't work."
-     A diagnosis:     "Question 3 asks about laundry costs. The answer is in
-                       one sentence that got split across two chunks, so
-                       neither chunk on its own contains it."
+* **Criterion 2 (Every answer names a source):**
+  * **Stage:** Generation
+  * **Mechanism:** When the retrieved chunks do not contain the answer, the model correctly outputs a refusal. However, the generation prompt does not strictly instruct the model to cite the retrieved source documents *even when* it is refusing to answer. Therefore, it just drops the source citation completely.
 
-     The five stages: loading → chunking → embedding → retrieval → generation.
-
-     Look for a pattern. If three misses all ask about numbers, that's one
-     problem, not three.
-
-     Missed nothing? Say so, then say honestly whether your targets were set
-     low, and which one you'd tighten and to what.
-
-     Milestone 3. -->
+* **Criterion 5 (Answer contains expected keywords):**
+  * **Stage:** Measurement / Retrieval
+  * **Mechanism:** One failure (Q2) was a measurement error at the Evaluation stage (the expected keyword was wrong in the test itself). The other failures were downstream effects of the Retrieval stage failing — because the correct chunks weren't retrieved for Q3, Q4, and Q5, the model couldn't generate the expected keywords in the answer.
 
 ## The Improvement
 
 **What I changed:**
+I updated the `GROUNDING_INSTRUCTION` in `generate.py` to explicitly command the model: *"YOU MUST ALWAYS LIST THE SOURCE DOCUMENTS at the end of your response, EVEN IF you are stating that you do not have enough information."*
 
 **Why I picked it:**
-
-<!-- Connect it to a specific diagnosis above in one sentence. If you can't,
-     you picked a fix because it sounded impressive. -->
+My diagnosis for Criterion 2 pointed directly to the Generation stage, where the LLM was dropping citations whenever it correctly refused to answer; updating the prompt directly addresses this exact mechanism.
 
 ### Run Log — After
 
-<!-- Same format, same five criteria, three runs each.
-     `python run_eval.py --label after` -->
-
 | Criterion | Target | Run 1 | Run 2 | Run 3 | Verdict |
 |---|---|---|---|---|---|
-| 1. Retrieved chunk contains the answer | 4 of 5 |  |  |  |  |
-| 2. Every answer names a source | 5 of 5 |  |  |  |  |
-| 3. Gate stops out-of-corpus questions | 4 of 5 |  |  |  |  |
-| 4. | | | | | |
-| 5. | | | | | |
+| 1. Retrieved chunk contains the answer | 4 of 5 | 2/5 | 2/5 | 2/5 | MISSED |
+| 2. Every answer names a source | 5 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 3. Gate stops out-of-corpus questions | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 4. Chunks align perfectly with natural boundaries | 4 of 5 | 5/5 | 5/5 | 5/5 | MET |
+| 5. Answer contains expected keywords | 5 of 5 | 2/5 | 2/5 | 2/5 | MISSED |
+
+*Output produced by `run_eval.py::main`, saved in `results/run_2026-09-26_1325_after.md`:*
+
+### What do students say about the quality of food in the dining hall? — run 1
+
+- Best distance: 0.4669 (passed the gate)
+- Sources retrieved: admin_dining_dollars.txt, dining_pellew_dining_hall.txt, dining_pellew_dining_hall_followup.txt, housing_fenwick_court.txt, housing_tamsin_court.txt
+
+```
+I do not have enough information to answer what students say about the quality of food in the dining hall.
+
+Source Documents:
+- housing_tamsin_court.txt
+- dining_pellew_dining_hall.txt
+- dining_pellew_dining_hall_followup.txt
+- admin_dining_dollars.txt
+- housing_fenwick_court.txt
+```
+
+### How do students find books for research? — run 1
+
+- Best distance: 0.4768 (passed the gate)
+- Sources retrieved: admin_library_holds.txt, admin_study_abroad.txt, money_textbooks.txt, study_library_hours.txt
+
+```
+I do not have enough information to answer how students find books for research.
+
+Source Documents:
+- money_textbooks.txt
+- admin_library_holds.txt
+- study_library_hours.txt
+- admin_study_abroad.txt
+```
+
+### What scholarships and awards are available for students? — run 1
+
+- Best distance: 0.4451 (passed the gate)
+- Sources retrieved: admin_campus_jobs_and_financial_aid.txt, admin_grade_appeals.txt, admin_graduation_requirements.txt, admin_study_abroad.txt, money_textbooks.txt
+
+```
+I do not have enough information to answer what scholarships and awards are available for students.
+
+Source Documents:
+- admin_campus_jobs_and_financial_aid.txt
+- admin_graduation_requirements.txt
+- admin_study_abroad.txt
+- admin_grade_appeals.txt
+- money_textbooks.txt
+```
+
 
 **Did it help?**
-
-<!-- Say plainly whether it did, and how you know. If it made things worse,
-     say that — a change that backfired, honestly reported, earns full credit
-     and is more interesting than one that worked. What matters is that you can
-     tell.
-
-     Milestone 4. -->
+Yes, it worked exactly as intended. Before the change, Criterion 2 failed (scoring 3/5, 2/5, 2/5) because the LLM omitted source file names when it didn't have enough information to answer. After the prompt update, it successfully cited the source documents across all 5 questions on all 3 runs, changing the verdict to MET.
 
 ## What's Still Broken
 
-<!-- For each criterion still missed after your fix: what you'd do about it,
-     and why you stopped where you did.
+Criteria 1 and 5 are still failing (scoring 2/5). 
 
-     "I ran out of time" is fine if it's true. Pretending nothing is left is
-     not.
+**What I'd do about it:** The root cause is at the Retrieval stage. Semantic search alone is failing to retrieve paragraphs containing exact matches for terms like "scholarships" or "research". To fix this, I would implement a Hybrid Search (combining Vector Search with BM25 keyword search) to ensure exact terms are pulled successfully.
 
-     Milestone 5. -->
+**Why I stopped:** The project instructions strictly require making and measuring only *one* change to avoid confounding variables. I chose to fix the Generation prompt (Criterion 2) first because it was a direct, isolated fix, and I stopped there to ensure I could accurately measure its impact.
 
 ## What I'd Do Differently
 
-<!-- Knowing what you know now — which of your five criteria would you write
-     differently, and why?
+Knowing what I know now, I would write Criterion 5 ("Answer contains expected keywords") differently. 
 
-     Milestone 5. -->
+Currently, this criterion evaluates the generation stage, but it is entirely dependent on the retrieval stage. When retrieval fails, the model correctly refuses to answer to prevent hallucinations. However, doing its job correctly automatically causes Criterion 5 to fail. In the future, I would write a generation criterion that evaluates formatting independently of retrieval (e.g., "All responses are exactly 3 sentences or fewer, including refusals") so the stages are properly isolated.
+
+
+## How I Used AI
+In Unit 2, I used an AI assistant to help analyze the terminal run logs and diagnose the specific mechanisms behind my failing criteria. The AI helped me spot the pattern that the generation stage was successfully refusing out-of-context questions but dropping the source citations in the process. This guided me to my targeted prompt engineering fix in `generate.py`.
